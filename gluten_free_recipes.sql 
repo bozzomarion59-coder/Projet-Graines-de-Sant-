@@ -169,7 +169,7 @@ FROM recipes
 WHERE recipes.title_recipe LIKE ‘%mot_recherché%';
 
 
--- Variante : 5 ingrédients par recette
+-- Associer 5 ingrédients aléatoires à chaque recette
 INSERT INTO recipe_ingredients (recipe_id, ingredient_id, quantity)
 SELECT 
     recipes.id_recipe,
