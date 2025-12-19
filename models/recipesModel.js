@@ -3,7 +3,7 @@ import bdd from "../config/bdd.js";
 // Obtenir toutes les recettes
 export const getAllRecipes = async () => {
     const getAllRecipes = 
-    "SELECT id_recipe, categorie_id, title_recipe, description, instructions, image_png, preparation_time, cooking_time, created_at_recipe FROM recipes";
+    "SELECT id_recipe, categorie_id, title_recipe, description, instructions, image_png, preparation_time, cooking_time, create_at_recipe FROM recipes";
 
     const [response] = await bdd.query(getAllRecipes);
     return response;
@@ -12,18 +12,18 @@ export const getAllRecipes = async () => {
 // Obtenir une recette par ID
 export const getRecipeById = async (id) => {
     const getRecipeById = 
-    "SELECT id_recipe, categorie_id, title_recipe, description, instructions, image_png, preparation_time, cooking_time, created_at_recipe FROM recipes WHERE id_recipe = ?";
+    "SELECT id_recipe, categorie_id, title_recipe, description, instructions, image_png, preparation_time, cooking_time, create_at_recipe FROM recipes WHERE id_recipe = ?";
 
     const [response] = await bdd.query(getRecipeById, [id]);
     return response;
 };  
 
 // Créer une nouvelle recette
-export const createRecipe = async (categorie_id, title_recipe, description, instructions, image_png, preparation_time, cooking_time, created_at_recipe) => {
+export const createRecipe = async (categorie_id, title_recipe, description, instructions, image_png, preparation_time, cooking_time) => {
     const createRecipe = 
-    "INSERT INTO recipes (categorie_id, title_recipe, description, instructions, image_png, preparation_time, cooking_time, created_at_recipe) VALUES (?, ?, ?, ?, ?, ?, ?, ?)";
+    "INSERT INTO recipes (categorie_id, title_recipe, description, instructions, image_png, preparation_time, cooking_time) VALUES (?, ?, ?, ?, ?, ?, ?)";
     
-    const [response] = await bdd.query(createRecipe, [categorie_id, title_recipe, description, instructions, image_png, preparation_time, cooking_time, created_at_recipe]);
+    const [response] = await bdd.query(createRecipe, [categorie_id, title_recipe, description, instructions, image_png, preparation_time, cooking_time]);
     return response;
 };
 
