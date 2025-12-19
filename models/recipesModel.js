@@ -1,18 +1,45 @@
 import bdd from "../config/bdd.js";
 
-// Obtenir toutes les recettes
+// Obtenir toutes les recettes en incluant le nom de la catégorie
 export const getAllRecipes = async () => {
     const getAllRecipes = 
-    "SELECT id_recipe, categorie_id, title_recipe, description, instructions, image_png, preparation_time, cooking_time, create_at_recipe FROM recipes";
+    `SELECT 
+            recipes.id_recipe,
+            recipes.title_recipe,
+            recipes.description,
+            recipes.instructions,
+            recipes.image_png,
+            recipes.preparation_time,
+            recipes.cooking_time,
+            recipes.create_at_recipe,
+            categories_recipes.name_categorie AS categorie
+        FROM recipes
+        JOIN categories_recipes
+            ON recipes.categorie_id = categories_recipes.id_categorie
+        ORDER BY recipes.id_recipe DESC
+        `;
 
     const [response] = await bdd.query(getAllRecipes);
     return response;
 };
 
-// Obtenir une recette par ID
+// Obtenir une recette par ID en incluant le nom de la catégorie
 export const getRecipeById = async (id) => {
     const getRecipeById = 
-    "SELECT id_recipe, categorie_id, title_recipe, description, instructions, image_png, preparation_time, cooking_time, create_at_recipe FROM recipes WHERE id_recipe = ?";
+    `SELECT 
+            recipes.id_recipe,
+            recipes.title_recipe,
+            recipes.description,
+            recipes.instructions,
+            recipes.image_png,
+            recipes.preparation_time,
+            recipes.cooking_time,
+            recipes.create_at_recipe,
+            categories_recipes.name_categorie AS categorie
+        FROM recipes
+        JOIN categories_recipes
+            ON recipes.categorie_id = categories_recipes.id_categorie
+        WHERE recipes.id_recipe = ?`;
 
     const [response] = await bdd.query(getRecipeById, [id]);
     return response;

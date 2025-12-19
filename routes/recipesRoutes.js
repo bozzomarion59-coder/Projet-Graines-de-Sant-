@@ -5,7 +5,7 @@ import express from 'express';
 
 const router = express.Router();
 
-// Routes pour la gestion de toutes les recettes
+// Routes pour la gestion de toutes les recettes 
 router.get('/AllRecipes', recipesControllers.getAllRecipes);
 
 // Route pour obtenir une recette par ID
