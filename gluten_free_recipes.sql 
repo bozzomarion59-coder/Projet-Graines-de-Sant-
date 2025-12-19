@@ -167,3 +167,19 @@ GROUP BY categories_recipes.name_categorie;
 SELECT recipes.title_recipe
 FROM recipes
 WHERE recipes.title_recipe LIKE ‘%mot_recherché%';
+
+
+-- Variante : 5 ingrédients par recette
+INSERT INTO recipe_ingredients (recipe_id, ingredient_id, quantity)
+SELECT 
+    recipes.id_recipe,
+    ingredients.id_ingredient,
+    CONCAT(FLOOR(1 + RAND() * 3), ' unités') AS quantity
+FROM recipes
+JOIN (
+    SELECT id_ingredient 
+    FROM ingredients 
+    ORDER BY RAND() 
+    LIMIT 5
+) AS ingredients;
+

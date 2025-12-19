@@ -106,11 +106,3 @@ export const deleteRecipe = async (req, res) => {
         res.status(500).json("une erreur est survenue");
     }
 };
-
-export default {
-    getAllRecipes,
-    getRecipeById,
-    createRecipe,
-    updateRecipe,
-    deleteRecipe,
-};
