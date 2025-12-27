@@ -29,6 +29,7 @@ export const createComment = async (req, res) => {
         const newComment = await commentsModel.createComment(user_id, recipe_id, content, create_at_comment);
         res.status(201).json(newComment);
     } catch (error) {
+        console.error(error);
         res.status(500).json({ error: "Erreur lors de la création du commentaire" });
     }
 };
@@ -45,6 +46,7 @@ export const deleteCommentById = async (req, res) => {
 
         res.status(200).json("Commentaire supprimé avec succès");
     } catch (error) {
+        console.error(error);
         res.status(500).json({ error: "Erreur lors de la suppression du commentaire" });
     }
 };
