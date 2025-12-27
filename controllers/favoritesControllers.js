@@ -7,6 +7,7 @@ export const addFavorite = async (req, res) => {
         const newFavorite = await favoritesModel.addFavorite(user_id, recipe_id);
         res.status(201).json(newFavorite);
     } catch (error) {
+        console.error(error);
         res.status(500).json({ error: "Erreur lors de l'ajout du favori" });
     }
 };
@@ -21,6 +22,7 @@ export const deleteFavorite = async (req, res) => {
         }
         res.status(200).json("Favori supprimé avec succès");
     } catch (error) {
+        console.error(error);
         res.status(500).json({ error: "Erreur lors de la suppression du favori" });
     }
 };
@@ -32,6 +34,7 @@ export const getFavoritesByUserId = async (req, res) => {
         const favorites = await favoritesModel.getFavoritesByUserId(user_id);
         res.status(200).json(favorites);
     } catch (error) {
+        console.error(error);
         res.status(500).json({ error: "Erreur lors de la récupération des favoris" });
     }
 };
