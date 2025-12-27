@@ -23,11 +23,11 @@ export const getCommentsByRecipeId = async (id) => {
 };  
 
 // Créer un nouveau commentaire pour une recette
-export const createComment = async (user_id, recipe_id, content, create_at_comment) => {
+export const createComment = async (user_id, recipe_id, content) => {
     const createComment =
-    "INSERT INTO comments (user_id, recipe_id, content, create_at_comment) VALUES (?, ?, ?, ?)";
+    "INSERT INTO comments (user_id, recipe_id, content) VALUES (?, ?, ? )";
 
-    const [response] = await bdd.query(createComment, [user_id, recipe_id, content, create_at_comment]);
+    const [response] = await bdd.query(createComment, [user_id, recipe_id, content]);
     return response;    
 };
 
